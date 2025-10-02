@@ -10,7 +10,7 @@ It includes test scripts to submit webhook events and fetch payment statuses.
 
 1. **Clone the repository:**
 ```bash
-git clone https://github.com/your-username/webhook-assignment.git
+git clone https://github.com/amandeep-sharma2002/webhook-listener.git
 cd webhook-assignment
 ```
 
