@@ -15,7 +15,7 @@ class WebhookController extends Controller
         $this->secret = env('WEBHOOK_SECRET', 'test_secret');
     }
 
-    public function receive(Request $request, $provider)
+    public function receive(Request $request)
     {
         $signature = $request->header('X-Signature');
 
@@ -37,7 +37,6 @@ class WebhookController extends Controller
 
         try {
             $event = WebhookEvent::create([
-                'provider'   => $provider,
                 'event_id'   => $eventId,
                 'payment_id' => $paymentId,
                 'status'     => $status,

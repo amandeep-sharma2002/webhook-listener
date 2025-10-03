@@ -20,13 +20,6 @@ cd webhook-listener
 composer install
 ```
 
-2. **Set up environment file:**
-```bash
-cp .env.example .env
-php artisan key:generate
-```
-
-
 3. **Run migrations:**
 ```bash
 php artisan migrate

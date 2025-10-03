@@ -6,7 +6,7 @@ This document outlines the implemented API endpoints, request/response formats, 
 
 ## **1. Submit Webhook**
 
-**Endpoint:**  POST /api/webhook/{provider}
+**Endpoint:**  POST /api/webhook
 
 
 **Request Body Example:**
@@ -37,9 +37,6 @@ This document outlines the implemented API endpoints, request/response formats, 
 - 200 Ignore → duplicate event_id
 
 **Notes:**
-
-- {provider} is the name of the payment provider (e.g., razorpay, paypal).
-
 - Duplicate events are ignored based on id.
 
 
@@ -64,5 +61,3 @@ Pass the payment_id to this endpoint, and it will return all statuses associated
   }
 ]
 ```
-
-**Notes:** We also store exact payload for the reference if any issue faced.
