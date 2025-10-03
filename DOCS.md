@@ -64,3 +64,5 @@ Pass the payment_id to this endpoint, and it will return all statuses associated
   }
 ]
 ```
+
+**Notes:** We also store exact payload for the reference if any issue faced.

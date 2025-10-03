@@ -11,7 +11,7 @@ It includes test scripts to submit webhook events and fetch payment statuses.
 1. **Clone the repository:**
 ```bash
 git clone https://github.com/amandeep-sharma2002/webhook-listener.git
-cd webhook-assignment
+cd webhook-listener
 ```
 
 
@@ -39,11 +39,14 @@ php artisan serve
 
 5. **Run test scripts:**
 
-You can change payload as per your requirement
+You can change payload as per your requirement in the files:
+- payment_authorized.json
+- payment_failed.json
+- payment_captured.json
+
 ```bash
 bash submit-webhook.sh
 bash get-payment-status.sh
-
 ```
 
 

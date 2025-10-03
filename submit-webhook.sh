@@ -1,20 +1,4 @@
-PAYLOAD='{
-  "event": "payment.failed",
-  "payload": {
-    "payment": {
-      "entity": {
-        "id": "pay_015",
-        "status": "failed",
-        "amount": 5000,
-        "currency": "INR"
-      }
-    }
-  },
-  "created_at": 1751889865,
-  "id": "evt_auth_018"
-}'
-
-# Generate HMAC signature (replace with your secret from .env)
+# Generate HMAC signature using secret given in assignment
 SECRET="test_secret"
 SIGNATURE=$(echo -n "$PAYLOAD" | openssl dgst -sha256 -hmac "$SECRET" | sed 's/^.* //')
 
@@ -22,4 +6,9 @@ SIGNATURE=$(echo -n "$PAYLOAD" | openssl dgst -sha256 -hmac "$SECRET" | sed 's/^
 curl -X POST http://127.0.0.1:8000/api/webhook/paypal \
   -H "Content-Type: application/json" \
   -H "X-Signature: $SIGNATURE" \
-  -d "$PAYLOAD"
+  -d @mock_payloads/payment_authorized.json
+
+# payment_authorized.json
+# payment_failed.json
+#payment_captured.json
+
