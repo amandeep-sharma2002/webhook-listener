@@ -28,10 +28,11 @@ class WebhookController extends Controller
         $payload = $request->json()->all();
 
         $eventId   = $payload['id'] ?? null;
+        $event    = $payload['event'] ?? null;
         $paymentId = $payload['payload']['payment']['entity']['id'] ?? null;
         $status    = $payload['payload']['payment']['entity']['status'] ?? null;
 
-        if (!$eventId || !$paymentId) {
+        if (!$event || !$eventId || !$paymentId) {
             return response()->json(['error' => 'Missing event_id or payment_id'], 400);
         }
 
@@ -39,6 +40,7 @@ class WebhookController extends Controller
             $event = WebhookEvent::create([
                 'event_id'   => $eventId,
                 'payment_id' => $paymentId,
+                'event'     => $event,
                 'status'     => $status,
                 'payload'    => $payload,
             ]);
@@ -51,11 +53,11 @@ class WebhookController extends Controller
     public function history($paymentId)
     {
         $events = WebhookEvent::where('payment_id', $paymentId)
-                    ->orderBy('created_at', 'desc')
+                    ->orderBy('created_at', 'asc')
                     ->get()
                     ->map(function ($event) {
                         return [
-                            'event_type' => $event->status,
+                            'event_type' => $event->event,
                             'received_at' => $event->created_at->toIso8601String(),
                         ];
                     });

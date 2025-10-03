@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('event_id')->unique();
             $table->string('payment_id');
             $table->string('status')->nullable();
+            $table->string('event');
             $table->json('payload');
             $table->timestamps();
         });

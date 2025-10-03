@@ -3,8 +3,8 @@ SECRET="test_secret"
 
 PAYLOAD=$(cat mock_payloads/payment_authorized.json)
 # payment_authorized.json
+# payment_captured.json
 # payment_failed.json
-#payment_captured.json
 
 SIGNATURE=$(echo -n "$PAYLOAD" | openssl dgst -sha256 -hmac "$SECRET" | sed 's/^.* //')
 
@@ -13,4 +13,3 @@ curl -X POST http://127.0.0.1:8000/api/webhook \
   -H "Content-Type: application/json" \
   -H "X-Signature: $SIGNATURE" \
   -d "$PAYLOAD"
-  # -d @mock_payloads/payment_authorized.json
